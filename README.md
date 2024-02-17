@@ -30,3 +30,13 @@ fasterq-dump ERR10513212
 PT428 (A2.3): ERR10513231
 fasterq-dump ERR10513231
 
+
+docker pull biocontainers/bwa:v0.7.17-3-deb_cv1
+
+docker pull biocontainers/samtools:v1.9-4-deb_cv1
+
+docker pull biocontainers/freebayes:v1.2.0-2-deb_cv1
+
+
+
+
