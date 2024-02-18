@@ -13,8 +13,11 @@ fasterq-dump ERR9769166
 
 Illumina data for case 5 (shotgun metagenomics): ERR9769167 (ONT); ERR9769171 (Illumina) 
 fasterq-dump ERR9769171
-
+It has a deletion at NC_063383:11,326-12,238
 fasterq-dump ERR9769167
+
+breseq -r NC_063383.1.gb -j 4 -n ERR9769171 -o ERR9769171_breseq ERR9769171_1.fastq.gz ERR9769171_2.fastq.gz
+
 
 Case 10 (shotgun metagenomics)
 fasterq-dump ERR9769176
@@ -32,8 +35,9 @@ fasterq-dump ERR10513231
 
 
 docker pull biocontainers/bwa:v0.7.17-3-deb_cv1
+docker pull staphb/minimap2:2.26
 
-docker pull biocontainers/samtools:v1.9-4-deb_cv1
+docker pull staphb/samtools:1.19
 
 docker pull biocontainers/freebayes:v1.2.0-2-deb_cv1
 
