@@ -1,4 +1,6 @@
-# MBCB - A brief (bioinformatics) history of the monkeypox outbreak in Portugal
+# MBCB - Genetic Alterations and Functional Impact
+
+A brief (bioinformatics) history of the monkeypox outbreak in Portugal
 
 Reference: 
 https://www.ncbi.nlm.nih.gov/nuccore/NC_063383
