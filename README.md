@@ -2,17 +2,18 @@
 
 For this class, we will analyse some data from the 2022 mpox (formerly known as Monkeypox) outbreak in Portugal.
 
-We will start with data from the [first cases](https://doi.org/10.1038/s41591-022-01907-y) 
+We will start with data from the [first cases](https://doi.org/10.1038/s41591-022-01907-y) in early May 2022.
 
-https://www.ncbi.nlm.nih.gov/nuccore/MT903344.1
+Briefly, total DNA was extracted from the clinical sample, and shotgun metagenomics sequencing was performed (more details available in the paper). Reads were human-depleted using BMTagger and subsequently mapped to the reference genome MPXV-UK_P2 [MT903344.1](https://www.ncbi.nlm.nih.gov/nuccore/MT903344.1).
+
+
+
 
 
 Reference: 
 Anoterh
 https://www.ncbi.nlm.nih.gov/nuccore/NC_063383
 
-
-:
 
 docker pull ncbi/sra-tools:3.0.1
 
