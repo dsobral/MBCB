@@ -11,7 +11,9 @@ We are going to analyse data from the sample [Monkeypox/PT0005/2022](https://www
 We first need to map the raw sequencing files to the reference genome. As you saw in the previous class, for this, we need the fastq files of our sample, as well as the fasta file of the reference genome. Then, we will use bwa to align the reads and samtools to transform the SAM file that is the output of bwa into a sorted, indexed, BAM file that will be used for further analysis.
 
 -  **TASK**: Download the fasta file of the reference from https://www.ncbi.nlm.nih.gov/nuccore/MT903344.1 
-
+<details><summary>Click Here to see a hint answer</summary><p>  
+  Click on "Send to" > File > Format (FASTA) > Create File 
+</p></details>
 
 
 https://www.ncbi.nlm.nih.gov/nuccore/NC_063383
