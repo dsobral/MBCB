@@ -12,8 +12,10 @@ We first need to map the raw sequencing files to the reference genome. As you sa
 
 -  **TASK**: Download the fasta file of the reference from https://www.ncbi.nlm.nih.gov/nuccore/MT903344.1 
 <details><summary>Click Here to see a hint</summary><p>  
-  Click on "Send to" > File > Format (FASTA) > Create File 
+  Click on: Send to > File > Format (FASTA) > Create File 
 </p></details>
+
+As in the last session, we will make use of [docker](https://www.docker.com/) images to facilitate reproducible installation of different bioinformatic tools in (almost) any environment. The following tasks assume the environment you are working in has already docker installed and ready to use.
 
 -  **TASK**: Download the paired fastq files using sra-tools fasterq-dump with the repository id ERR9769171  
 <details><summary>Click Here to see a hint</summary><p>  
@@ -27,15 +29,23 @@ Next, run fasterq-dump using the sra-tools docker image:
 </p></details>
 
 
-Now, we need to create an index of the reference genome to be able to use bwa to align the reads against the reference. As in the last session, we will make use of [docker](https://www.docker.com/) images to facilitate reproducible installation in (almost) any environment. The following tasks assume the environment you are working in has already docker installed and ready to use.
+-  **TASK**: Generate an indexed BAM file with the alignments of the monkeypox sample reads against the MT903344.1 reference
+<details><summary>Click Here to see a hint</summary><p>
 
--  **TASK**: If you have not done so before, pull a docker image for bwa and samtools eg.:
+If you have not done so before, pull a docker image for bwa and samtools eg.:
 > docker pull biocontainers/bwa:v0.7.17-3-deb_cv1
 > docker pull biocontainers/
 
--  **TASK**: Generate a bwa index of the fasta file you just downloaded
-<details><summary>Click Here to see a hint</summary><p>  
+We first need to create an index of the reference genome to be able to use bwa to align the reads against the reference. 
 > docker run --rm -v $PWD:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa index MT903344.1.fasta
+
+Next we use bwa to generate alignments:
+> docker run --rm -v $PWD:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa index MT903344.1.fasta
+
+Finally, we use samtools to convert the sam to bam, sort it by position, and index it.
+
+
+
 </p></details>
 
 
