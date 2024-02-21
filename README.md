@@ -17,11 +17,15 @@ We first need to map the raw sequencing files to the reference genome. As you sa
 
 Now, we need to create an index of the reference genome to be able to use bwa to align the reads against the reference. As in the last session, we will make use of [docker](https://www.docker.com/) images to facilitate reproducible installation in (almost) any environment. The following tasks assume the environment you are working in has already docker installed and ready to use.
 
-If you have not done so before, pull a docker image for bwa:
+If you have not done so before, pull a docker image for bwa eg.:
 
 > docker pull biocontainers/bwa:v0.7.17-3-deb_cv1
 
 -  **TASK**: Generate a bwa index of the fasta file you just downloaded
+<details><summary>Click Here to see a hint</summary><p>  
+> docker run -v /yourfolder:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa index MT903344.1.fasta
+</p></details>
+
   
 https://www.ncbi.nlm.nih.gov/nuccore/NC_063383
 
