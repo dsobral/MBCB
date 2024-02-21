@@ -15,22 +15,35 @@ We first need to map the raw sequencing files to the reference genome. As you sa
   Click on "Send to" > File > Format (FASTA) > Create File 
 </p></details>
 
+-  **TASK**: Download the paired fastq files using sra-tools fasterq-dump with the repository id ERR9769171  
+<details><summary>Click Here to see a hint</summary><p>  
+
+  If you have not done so before, pull a docker image for sra-tools eg.:
+> docker pull ncbi/sra-tools:3.0.1
+
+Next, run fasterq-dump using the sra-tools docker image:
+> docker run --rm -v $PWD:/data ncbi/sra-tools:3.0.1 fasterq-dump --outdir /data ERR9769171
+
+</p></details>
+
+
 Now, we need to create an index of the reference genome to be able to use bwa to align the reads against the reference. As in the last session, we will make use of [docker](https://www.docker.com/) images to facilitate reproducible installation in (almost) any environment. The following tasks assume the environment you are working in has already docker installed and ready to use.
 
-If you have not done so before, pull a docker image for bwa and samtools eg.:
-  * > docker pull biocontainers/bwa:v0.7.17-3-deb_cv1
-  * > docker pull biocontainers/bwa:v0.7.17-3-deb_cv1
+-  **TASK**: If you have not done so before, pull a docker image for bwa and samtools eg.:
+> docker pull biocontainers/bwa:v0.7.17-3-deb_cv1
+> docker pull biocontainers/
 
 -  **TASK**: Generate a bwa index of the fasta file you just downloaded
 <details><summary>Click Here to see a hint</summary><p>  
 > docker run --rm -v $PWD:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa index MT903344.1.fasta
 </p></details>
 
+
+
   
 https://www.ncbi.nlm.nih.gov/nuccore/NC_063383
 
 
-docker pull ncbi/sra-tools:3.0.1
 
 ONT data of first case; [ERR9769166](ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR976/006/ERR9769166/ERR9769166.fastq.gz)
 fasterq-dump ERR9769166
