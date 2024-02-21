@@ -1,12 +1,18 @@
 # MBCB - Genetic Alterations and Functional Impact
 
-A brief (bioinformatics) history of the monkeypox outbreak in Portugal
+For this class, we will analyse some data from the 2022 mpox (formerly known as Monkeypox) outbreak in Portugal.
+
+We will start with data from the [first cases](https://doi.org/10.1038/s41591-022-01907-y) 
+
+https://www.ncbi.nlm.nih.gov/nuccore/MT903344.1
+
 
 Reference: 
+Anoterh
 https://www.ncbi.nlm.nih.gov/nuccore/NC_063383
 
 
-[First case](https://doi.org/10.1038/s41591-022-01907-y):
+:
 
 docker pull ncbi/sra-tools:3.0.1
 
