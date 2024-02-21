@@ -4,14 +4,16 @@ For this class, we will analyse some data from the 2022 mpox (formerly known as 
 
 We will start with data from the [first cases](https://doi.org/10.1038/s41591-022-01907-y) in early May 2022.
 
-Briefly, total DNA was extracted from the clinical sample, and shotgun metagenomics sequencing was performed (more details available in the paper). Reads were human-depleted using BMTagger and subsequently mapped to the reference genome MPXV-UK_P2 [MT903344.1](https://www.ncbi.nlm.nih.gov/nuccore/MT903344.1).
+Briefly, total DNA was extracted from the clinical sample, and shotgun metagenomics sequencing was performed (more details available in the paper). Reads were human-depleted using BMTagger and subsequently mapped to the reference genome [MPXV-UK_P2 MT903344.1](https://www.ncbi.nlm.nih.gov/nuccore/MT903344.1).
+
+We are going to analyse data from the sample [Monkeypox/PT0005/2022](https://www.ncbi.nlm.nih.gov/nuccore/ON585037.1). Due to ethical reasons, only the reads mapping to the monkeypox virus reference are submitted to public repositories, and that is what we will use in our analysis.
+
+We first need to map the raw sequencing files to the reference genome. As you saw in the previous class, for this, we need the fastq files of our sample, as well as the fasta file of the reference genome. Then, we will use bwa to align the reads and samtools to transform the SAM file that is the output of bwa into a sorted, indexed, BAM file that will be used for further analysis.
+
+-  **TASK**: Download the fasta file of the reference from https://www.ncbi.nlm.nih.gov/nuccore/MT903344.1 
 
 
 
-
-
-Reference: 
-Anoterh
 https://www.ncbi.nlm.nih.gov/nuccore/NC_063383
 
 
