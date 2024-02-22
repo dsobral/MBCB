@@ -10,7 +10,7 @@ We are going to analyse data from the sample [Monkeypox/PT0005/2022](https://www
 
 We first need to map the raw sequencing files to the reference genome. As you saw in the previous session, for this, we need the fastq files of our sample, as well as the fasta file of the reference genome. Then, we will use bwa to align the reads and samtools to transform the SAM file that is the output of bwa into a sorted, indexed, BAM file that will be used for further analysis.
 
--  **TASK**: Download the fasta file of the reference from https://www.ncbi.nlm.nih.gov/nuccore/MT903344.1 
+**TASK**: Download the fasta file of the reference from https://www.ncbi.nlm.nih.gov/nuccore/MT903344.1 
 <details><summary>Click Here to see a hint</summary><p>  
   Click on: Send to > File > Format (FASTA) > Create File 
 </p></details>
@@ -18,7 +18,7 @@ We first need to map the raw sequencing files to the reference genome. As you sa
 
 As in the last session, we will make use of [docker](https://www.docker.com/) images to facilitate reproducible installation of different bioinformatic tools in (almost) any environment. The following tasks assume the environment you are working in has already docker installed and ready to use.
 
--  **TASK**: Download the paired fastq files using sra-tools fasterq-dump with the repository id ERR9769171  
+ **TASK**: Download the paired fastq files using sra-tools fasterq-dump with the repository id ERR9769171  
 <details><summary>Click Here to see a hint</summary><p>  
 
   If you have not done so before, pull a docker image for sra-tools eg.:
@@ -31,7 +31,7 @@ Next, run fasterq-dump using the sra-tools docker image:
 <br/>
 
 
--  **TASK**: Generate an indexed BAM file with the alignments of the monkeypox sample reads against the MT903344.1 reference
+**TASK**: Generate an indexed BAM file with the alignments of the monkeypox sample reads against the MT903344.1 reference
 <details><summary>Click Here to see a hint</summary><p>
 
 If you have not done so before, pull a docker image for bwa and samtools eg.:
