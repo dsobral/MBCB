@@ -27,6 +27,8 @@ As in the last session, we will make use of [docker](https://www.docker.com/) im
 Next, run fasterq-dump using the sra-tools docker image:
 > docker run --rm -v $PWD:/data ncbi/sra-tools:3.0.1 fasterq-dump --outdir /data ERR9769171
 
+Since these reads are already the reads that map to the monkeypox genome, they have been already quality processed, and thus can be used directly as they are for subsequent analyses.
+
 </p></details>
 <br/>
 
@@ -39,29 +41,25 @@ If you have not done so before, pull a docker image for bwa and samtools eg.:
 > docker pull biocontainers/
 
 We first need to create an index of the reference genome to be able to use bwa to align the reads against the reference. 
-> docker run --rm -v $PWD:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa index MT903344.1.fasta
+> docker run --rm -v $PWD:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa mem MT903344.1.fasta
 
 Next we use bwa to generate alignments:
-> docker run --rm -v $PWD:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa index MT903344.1.fasta
+> docker run --rm -v $PWD:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa index MT903344.1.fasta ERR9769171_1.fastq ERR9769171_2.fastq > ERR9769171.sam 
 
 Finally, we use samtools to convert the sam to bam, sort it by position, and index it.
 
+> docker run --rm -v $PWD:/data biocontainers/samtools:v1.9-4-deb_cv1 samtools view -Sb ERR9769171.sam > ERR9769171.bam
 
+> docker run --rm -v $PWD:/data biocontainers/samtools:v1.9-4-deb_cv1 samtools sort -o ERR9769171.sorted.bam ERR9769171.bam
+
+> docker run --rm -v $PWD:/data biocontainers/samtools:v1.9-4-deb_cv1 samtools index ERR9769171.sorted.bam
 
 </p></details>
+<br/>
+
+Now that we obtained 
 
 
-
-  
-https://www.ncbi.nlm.nih.gov/nuccore/NC_063383
-
-
-
-ONT data of first case; [ERR9769166](ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR976/006/ERR9769166/ERR9769166.fastq.gz)
-fasterq-dump ERR9769166
-
-Illumina data for case 5 (shotgun metagenomics): ERR9769167 (ONT); ERR9769171 (Illumina) 
-fasterq-dump ERR9769171
 It has a deletion at NC_063383:11,326-12,238
 fasterq-dump ERR9769167
 
