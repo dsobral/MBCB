@@ -14,6 +14,7 @@ We first need to map the raw sequencing files to the reference genome. As you sa
 <details><summary>Click Here to see a hint</summary><p>  
   Click on: Send to > File > Format (FASTA) > Create File 
 </p></details>
+<br/>
 
 As in the last session, we will make use of [docker](https://www.docker.com/) images to facilitate reproducible installation of different bioinformatic tools in (almost) any environment. The following tasks assume the environment you are working in has already docker installed and ready to use.
 
@@ -27,6 +28,7 @@ Next, run fasterq-dump using the sra-tools docker image:
 > docker run --rm -v $PWD:/data ncbi/sra-tools:3.0.1 fasterq-dump --outdir /data ERR9769171
 
 </p></details>
+<br/>
 
 
 -  **TASK**: Generate an indexed BAM file with the alignments of the monkeypox sample reads against the MT903344.1 reference
