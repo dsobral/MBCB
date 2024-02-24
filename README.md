@@ -22,10 +22,14 @@ As in the last session, we will make use of [docker](https://www.docker.com/) im
 <details><summary>Click Here to see a hint</summary><p>  
 
   If you have not done so before, pull a docker image for sra-tools eg.:
-> docker pull ncbi/sra-tools:3.0.1
+```
+docker pull ncbi/sra-tools:3.0.1
+```
 
 Next, run fasterq-dump using the sra-tools docker image:
-> docker run --rm -v $PWD:/data ncbi/sra-tools:3.0.1 fasterq-dump --outdir /data ERR9769171
+```
+docker run --rm -v $PWD:/data ncbi/sra-tools:3.0.1 fasterq-dump --outdir /data ERR9769171
+```
 
 Since these reads are already the reads that map to the monkeypox genome, they have been already quality processed, and thus can be used directly as they are for subsequent analyses.
 
@@ -37,23 +41,30 @@ Since these reads are already the reads that map to the monkeypox genome, they h
 <details><summary>Click Here to see a hint</summary><p>
 
 If you have not done so before, pull a docker image for bwa and samtools eg.:
-> docker pull biocontainers/bwa:v0.7.17-3-deb_cv1
+```
+docker pull biocontainers/bwa:v0.7.17-3-deb_cv1
+```
 
-> docker pull biocontainers/samtools:v1.9-4-deb_cv1
-
+```
+docker pull biocontainers/samtools:v1.9-4-deb_cv1
+```
 We first need to create an index of the reference genome to be able to use bwa to align the reads against the reference. 
-> docker run --rm -v $PWD:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa index MT903344.1.fasta
+```
+docker run --rm -v $PWD:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa index MT903344.1.fasta
+```
 
 Next we use bwa to generate alignments:
-> docker run --rm -v $PWD:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa mem MT903344.1.fasta ERR9769171_1.fastq ERR9769171_2.fastq > ERR9769171.sam 
+```
+docker run --rm -v $PWD:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa mem MT903344.1.fasta ERR9769171_1.fastq ERR9769171_2.fastq > ERR9769171.sam 
+```
 
 Finally, we use samtools to convert the sam to bam, sort it by position, and index it.
 
-> docker run --rm -v $PWD:/data biocontainers/samtools:v1.9-4-deb_cv1 samtools view -Sb ERR9769171.sam > ERR9769171.bam
-
-> docker run --rm -v $PWD:/data biocontainers/samtools:v1.9-4-deb_cv1 samtools sort -o ERR9769171.sorted.bam ERR9769171.bam
-
-> docker run --rm -v $PWD:/data biocontainers/samtools:v1.9-4-deb_cv1 samtools index ERR9769171.sorted.bam
+```
+docker run --rm -v $PWD:/data biocontainers/samtools:v1.9-4-deb_cv1 samtools view -Sb ERR9769171.sam > ERR9769171.bam
+docker run --rm -v $PWD:/data biocontainers/samtools:v1.9-4-deb_cv1 samtools sort -o ERR9769171.sorted.bam ERR9769171.bam
+docker run --rm -v $PWD:/data biocontainers/samtools:v1.9-4-deb_cv1 samtools index ERR9769171.sorted.bam
+```
 
 Note: you should now also have the file ERR9769171.sorted.bam.bai
 
