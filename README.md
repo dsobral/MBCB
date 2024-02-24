@@ -60,7 +60,9 @@ Note: you should now also have the file ERR9769171.sorted.bam.bai
 </p></details>
 <br/>
 
-Now that we obtained 
+Now that we obtained our alignments, let's try to obtain variants, ie., differences from the reference. For this we will use [freebayes](https://github.com/freebayes/freebayes), a tool that is relatively simple to use, and has been used in several different context. We should note that there are several programs to perform variant calling, and their performance vary. 
+
+
 
 
 It has a deletion at NC_063383:11,326-12,238
