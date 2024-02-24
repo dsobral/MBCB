@@ -38,7 +38,8 @@ Since these reads are already the reads that map to the monkeypox genome, they h
 
 If you have not done so before, pull a docker image for bwa and samtools eg.:
 > docker pull biocontainers/bwa:v0.7.17-3-deb_cv1
-> docker pull biocontainers/
+
+> docker pull biocontainers/samtools:v1.9-4-deb_cv1
 
 We first need to create an index of the reference genome to be able to use bwa to align the reads against the reference. 
 > docker run --rm -v $PWD:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa mem MT903344.1.fasta
@@ -53,6 +54,8 @@ Finally, we use samtools to convert the sam to bam, sort it by position, and ind
 > docker run --rm -v $PWD:/data biocontainers/samtools:v1.9-4-deb_cv1 samtools sort -o ERR9769171.sorted.bam ERR9769171.bam
 
 > docker run --rm -v $PWD:/data biocontainers/samtools:v1.9-4-deb_cv1 samtools index ERR9769171.sorted.bam
+
+Note: you should now also have the file ERR9769171.sorted.bam.bai
 
 </p></details>
 <br/>
