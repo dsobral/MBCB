@@ -60,9 +60,21 @@ Note: you should now also have the file ERR9769171.sorted.bam.bai
 </p></details>
 <br/>
 
-Now that we obtained our alignments, let's try to obtain variants, ie., differences from the reference. For this we will use [freebayes](https://github.com/freebayes/freebayes), a tool that is relatively simple to use, and has been used in several different context. We should note that there are several programs to perform variant calling, and their performance vary. 
+Now that we obtained our alignments, let's try to obtain variants, ie., differences from the reference. For this we will use [freebayes](https://github.com/freebayes/freebayes), a tool that is relatively simple to use, and has been used in several different contexts. Note that there are several programs to perform variant calling, and with varying performance in different situations. 
 
+Let's pull a docker image for freebayes (note that this is not the most recent version):
+> docker pull biocontainers/freebayes:v1.2.0-2-deb_cv1
 
+We will start by looking at the available options to run the software
+> docker run --rm biocontainers/freebayes:v1.2.0-2-deb_cv1 freebayes -h
+
+As you can see, freebayes has several options, although it can used even without explicitly providing any of them. One important important parameter is ploidy, as it determines how many possible haplotypes we should expect have at a given locus. 
+
+**Question**: Knowing that this is a virus, do you think using the default ploidy of 2 is a good idea?
+<details><summary>Click Here to see a hint</summary><p>
+
+</p></details>
+<br/>
 
 
 It has a deletion at NC_063383:11,326-12,238
