@@ -42,10 +42,10 @@ If you have not done so before, pull a docker image for bwa and samtools eg.:
 > docker pull biocontainers/samtools:v1.9-4-deb_cv1
 
 We first need to create an index of the reference genome to be able to use bwa to align the reads against the reference. 
-> docker run --rm -v $PWD:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa mem MT903344.1.fasta
+> docker run --rm -v $PWD:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa index MT903344.1.fasta
 
 Next we use bwa to generate alignments:
-> docker run --rm -v $PWD:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa index MT903344.1.fasta ERR9769171_1.fastq ERR9769171_2.fastq > ERR9769171.sam 
+> docker run --rm -v $PWD:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa mem MT903344.1.fasta ERR9769171_1.fastq ERR9769171_2.fastq > ERR9769171.sam 
 
 Finally, we use samtools to convert the sam to bam, sort it by position, and index it.
 
