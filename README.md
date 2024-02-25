@@ -203,14 +203,40 @@ Finally, a missing coverage evidence at position 173314 may suggest some incoher
 </p></details>
 <br/>
 
+Sequencing virus using shotgun metagenomics is very expensive, as usually less than 1% is viral genome. Therefore, like for SARS-CoV-2, an amplicon set covering the whole monkeypox genome [was generated](https://doi.org/10.1371/journal.pbio.3002151), enabling a much faster and cheaper sequencing of samples. With this new tool in hand, we could sequence over 50% of all the detected cases in Portugal, [revealing the complexity of the explosive monkeypox outbreak in 2022](https://doi.org/10.1038/s41591-023-02542-x).
+
+Let's now look at one the samples obtained during the 2022 outbreak sequenced using the amplicon set from [Chen et al.](https://doi.org/10.1371/journal.pbio.3002151). 
+
+**TASK**: Generate a VCF file with variants, obtained using freebayes, for sample [Monkeypox/PT0428/2022](https://www.ncbi.nlm.nih.gov/nuccore/OP555515.1), with id ERR10513231
+<details><summary>Click Here to see a suggestion</summary><p>
+
+```
+docker run --rm -v $PWD:/data ncbi/sra-tools:3.0.1 fasterq-dump --outdir /data ERR10513231
+docker run --rm -v $PWD:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa mem MT903344.1.fasta ERR10513231_1.fastq ERR10513231_2.fastq > ERR10513231.sam
+docker run --rm -v $PWD:/data biocontainers/samtools:v1.9-4-deb_cv1 samtools view -Sb ERR10513231.sam > ERR10513231.bam
+docker run --rm -v $PWD:/data biocontainers/samtools:v1.9-4-deb_cv1 samtools sort -o ERR10513231.sorted.bam ERR10513231.bam
+docker run --rm -v $PWD:/data biocontainers/samtools:v1.9-4-deb_cv1 samtools index ERR10513231.sorted.bam
+docker run --rm -v $PWD:/data biocontainers/freebayes:v1.2.0-2-deb_cv1 freebayes -p 1 -0 -f MT903344.1.fasta ERR10513231.sorted.bam > ERR10513231.sorted.vcf
+```
+
+</p></details>
+<br/>
+
+**Question**: 
+<details><summary>Click Here to see a suggestion</summary><p>
+
+
+</p></details>
+<br/>
+
+
+
+
 
 It has a deletion at NC_063383:11,326-12,238
 
 breseq -r NC_063383.1.gb -j 4 -n ERR9769171 -o ERR9769171_breseq ERR9769171_1.fastq.gz ERR9769171_2.fastq.gz
 
-
-
-[A retrospective overview of the 2022 outbreak](https://doi.org/10.1038/s41591-023-02542-x):
 
 Routine surveillance of monkeypox 
 
