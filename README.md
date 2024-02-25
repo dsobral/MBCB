@@ -230,27 +230,10 @@ docker run --rm -v $PWD:/data biocontainers/freebayes:v1.2.0-2-deb_cv1 freebayes
 <br/>
 
 
-
-
-
-It has a deletion at NC_063383:11,326-12,238
-
-breseq -r NC_063383.1.gb -j 4 -n ERR9769171 -o ERR9769171_breseq ERR9769171_1.fastq.gz ERR9769171_2.fastq.gz
-
-
 Routine surveillance of monkeypox 
-
-[amplicon sequencing]
 
 PT428 (A2.3): ERR10513231
 fasterq-dump ERR10513231
-
-
-
-PT400 (B.1): ERR10513212
-fasterq-dump ERR10513212
-
-
 
 
 
