@@ -81,7 +81,7 @@ We will start by looking at the available options to run the software
 docker run --rm biocontainers/freebayes:v1.2.0-2-deb_cv1 freebayes -h
 ```
 
-As you can see, freebayes has several options, although it can be used even without explicitly providing any of them. One important important parameter is ploidy, as it determines how many possible haplotypes we should expect to have at a given locus. 
+As you can see, freebayes has several options, although it can be used even without explicitly providing any of them. One important parameter is ploidy, as it determines how many possible haplotypes we should expect to have at a given locus. 
 
 **Question**: Knowing that this is a virus, do you think using the default ploidy of 2 is a good idea?
 <details><summary>Click Here to see a suggestion</summary><p>
@@ -117,9 +117,7 @@ The VCF contains 40 variants with QUAL>30, 39 SNPs and one tandem repeat.
 **Question**: Does the VCF contain all the SNVs described in the [paper (see Fig.2)](https://www.nature.com/articles/s41591-022-01907-y/figures/2)? If not, can you think of a reason why that is so?
 <details><summary>Click Here to see a suggestion</summary><p>
 
-All SNVs in Fig.2 of the paper are in the VCF except the first 5 and the last 5.
-
-These SNVs fall inside the terminal repeat region, a duplicated area present at the ends of the genome. Since there is more than one copy of it, the mapping quality is 0, and is excluded from analysis (in accordance with the parameters we used).
+All SNVs in Fig.2 of the paper are in the VCF except the first 5 and the last 5. These SNVs fall inside the terminal repeat region, a duplicated area present at the ends of the genome. Since there is more than one exact copy of it, the mapping quality of reads aligning to this region is 0, and are excluded from analysis (in accordance with the parameters we used).
 
 </p></details>
 <br/>
@@ -133,7 +131,7 @@ The vast majority of SNVs are G>A or C>T mutations. This is thought to be the si
 <br/>
 
 
-Freebayes only detects mutations that fall with the read (SNVs and small indels). Sice the type of evidence necessary to detect larger structural variants is different, specific tools are necessary. We will use one easy to use tool that was developed to study experimental evolution of E. coli. This tool, [breseq](https://barricklab.org/twiki/bin/view/Lab/ToolsBacterialGenomeResequencing), performs all the necessary steps to detect variants, including structural variants, and produces a nice report with all the information.    
+Freebayes only detects mutations that fall within the read (SNVs and small indels). Sice the type of evidence necessary to detect larger structural variants is different, specific tools are necessary. We will use one easy to use tool that was developed to study experimental evolution of E. coli. This tool, [breseq](https://barricklab.org/twiki/bin/view/Lab/ToolsBacterialGenomeResequencing), performs all the necessary steps to detect variants, including structural variants, and produces a nice report with all the information.    
 
 Before trying to use it for our sample, let's explore an example output. Namely, we will look at Example1a from the breseq introductory topics workshop.
 
@@ -180,7 +178,7 @@ This will take a few minutes to run, depending on your computer.
 **Question**: How do the variants that breseq reports compare with what you obtained with freebayes?
 <details><summary>Click Here to see a suggestion</summary><p>
 
-All SNVs are the same. The indel at position is annotated slightly differently, and two more indels are reported by freebayes.
+All SNVs are the same. The indel at position is annotated slightly differently, and two more indels are reported by breseq.
 
 </p></details>
 <br/>
@@ -189,9 +187,12 @@ All SNVs are the same. The indel at position is annotated slightly differently, 
 **Question**: Is there any evidence for larger structural variants?
 <details><summary>Click Here to see a suggestion</summary><p>
 
-All SNVs in Fig.2 of the paper are in the VCF except the first 5 and the last 5.
+There are no large structural variants that pass the strict threshold of breseq.
 
-These SNVs fall inside the terminal repeat region, a duplicated area present at the ends of the genome. Since there is more than one copy of it, the mapping quality is 0, and is excluded from analysis (in accordance with the parameters we used).
+Nonetheless, there is unassigned evidence that we could look at. Namely, there is evidence for the junction between positions 11334 and 12248 at 97.4% (meaning, of all reads spanning the region, almost all support the junction). Moreover, although there is complete missing coverage in the region, there is missing coverage evidence within the region. This strongly suggests a deletion event at or near position 11334 until near position 12248 (914bp).
+
+Looking at the alignments in IGV, we can confirm this:
+![Evidence for 914bp deletion](igv_snapshot_deletion.png)
 
 </p></details>
 <br/>
