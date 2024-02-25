@@ -43,11 +43,9 @@ Since these reads are already the reads that map to the monkeypox genome, they h
 If you have not done so before, pull a docker image for bwa and samtools eg.:
 ```
 docker pull biocontainers/bwa:v0.7.17-3-deb_cv1
-```
-
-```
 docker pull biocontainers/samtools:v1.9-4-deb_cv1
 ```
+
 We first need to create an index of the reference genome to be able to use bwa to align the reads against the reference. 
 ```
 docker run --rm -v $PWD:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa index MT903344.1.fasta
@@ -80,10 +78,10 @@ docker pull biocontainers/freebayes:v1.2.0-2-deb_cv1
 
 We will start by looking at the available options to run the software
 ```
-> docker run --rm biocontainers/freebayes:v1.2.0-2-deb_cv1 freebayes -h
+docker run --rm biocontainers/freebayes:v1.2.0-2-deb_cv1 freebayes -h
 ```
 
-As you can see, freebayes has several options, although it can used even without explicitly providing any of them. One important important parameter is ploidy, as it determines how many possible haplotypes we should expect have at a given locus. 
+As you can see, freebayes has several options, although it can be used even without explicitly providing any of them. One important important parameter is ploidy, as it determines how many possible haplotypes we should expect to have at a given locus. 
 
 **Question**: Knowing that this is a virus, do you think using the default ploidy of 2 is a good idea?
 <details><summary>Click Here to see a suggestion</summary><p>
@@ -93,7 +91,7 @@ Assuming a simple exponential expansion of the virus, the most likely ploidy is 
 </p></details>
 <br/>
 
-Other parameters include quality filters for the base quality and alignment quality. Freebayes provide a parameter -0 that provides a strict threshold for these quality parameters.
+Other parameters include quality filters for the base quality and alignment quality that influence the variant calling process. Freebayes provide a parameter -0 that provides a strict threshold for these quality parameters.
 
 **TASK**: Run the following freebayes command:
 ```
@@ -103,7 +101,7 @@ docker run --rm -v $PWD:/data biocontainers/freebayes:v1.2.0-2-deb_cv1 freebayes
 **Question**: How many variants are in the VCF file?
 <details><summary>Click Here to see a suggestion</summary><p>
 
-The VCF contains 60 variants (the number of lines, except the header lines starting with '#'). By default, freebayes reports every position where there is any kind of evidence (no matter how small) of differences with the reference. 
+The VCF contains 60 variants (the number of lines, except the header lines starting with '#'). Note that by default, freebayes reports every position where there is any kind of evidence (no matter how small) of differences with the reference. 
 
 </p></details>
 <br/>
@@ -111,7 +109,7 @@ The VCF contains 60 variants (the number of lines, except the header lines start
 **Question**: How many variants are in the VCF file with good quality (QUAL>30)?
 <details><summary>Click Here to see a suggestion</summary><p>
 
-The VCF contains 40 variants with QUAL > 30, 39 SNPs and one tandem repeat.
+The VCF contains 40 variants with QUAL>30, 39 SNPs and one tandem repeat.
 
 </p></details>
 <br/>
@@ -126,7 +124,7 @@ These SNVs fall inside the terminal repeat region, a duplicated area present at 
 </p></details>
 <br/>
 
-Freebayes only detects mutations that fall with the read (SNVs and small indels). Sice the type of evidence necessary to detect larger structural variants is different, specific tools are necessary. We will use one easy to use tool that was developed to study evolution of E. coli. This tool, [breseq](https://barricklab.org/twiki/bin/view/Lab/ToolsBacterialGenomeResequencing), performs all the necessary steps to detect variants, including structural variants.    
+Freebayes only detects mutations that fall with the read (SNVs and small indels). Sice the type of evidence necessary to detect larger structural variants is different, specific tools are necessary. We will use one easy to use tool that was developed to study experimental evolution of E. coli. This tool, [breseq](https://barricklab.org/twiki/bin/view/Lab/ToolsBacterialGenomeResequencing), performs all the necessary steps to detect variants, including structural variants, and produces a nice report with all the information.    
 
 Before trying to use it for our sample, let's explore an example output. Namely, we will look at Example1a from the breseq introductory topics workshop.
 
@@ -140,7 +138,7 @@ For the large deletion in position 547,700, you can see that there are very few 
 
 **Note**: At the bottom of the report, there are positions with junction or missing coverage evidence suggesting differences from the reference (mostly structural variants), but that do not pass the strict criteria breseq uses for calling a variant. 
 
-Let's try now to use breseq with our monkeypox sample. First, let's obtain the software.
+Let's now try to use breseq with our monkeypox sample. First, let's obtain the software.
 
 **TASK**: Pull a docker image for breseq:
 ```
