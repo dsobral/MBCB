@@ -238,16 +238,34 @@ The SNVs are not the same. This sample is likely to have a completely separate o
 </p></details>
 <br/>
 
+To further confirm our suspicion, we will now generate consensus sequences for the two samples. For this, we can take the alignments previously generated and, for each base of the genome, calculate the most likely base, assuming a haploid genome. Recent versions of samtools provide a command to do precisely this.
+
+**TASK**: Run the following samtools commands to generate consensus sequences for the two samples.
+```
+docker run --rm -v $PWD:/data staphb/samtools:1.19 samtools consensus -a ERR9769171.sorted.bam > ERR9769171.sorted.fasta
+docker run --rm -v $PWD:/data staphb/samtools:1.19 samtools consensus -a ERR10513231.sorted.bam > ERR10513231.sorted.fasta
+```
+
+**TASK**: Upload the consensus sequences to [nextclade](https://clades.nextstrain.org/) and compare the two samples in the Mpox virus (All clades) tree
+
+**Note**: It is better if you change the sequence id in the fasta files to something more meaningful, like the sample name (Monkeypox/PT0005/2022 and Monkeypox/PT0428/2022, respectively). 
+
+**Question**: To what clade do the samples belong?
+<details><summary>Click Here to see a suggestion</summary><p>
+
+Sample Monkeypox/PT0005/2022 belongs to the B.1.9 clade, a subclade of the B.1 clade at the origin of 2022 outbreak. Monkeypox/PT0428/2022 belongs to the A.2.3 clade, a completely different clade, indicating a separate origin for this sample. This sample was unique, and there were no further cases detected, neither observed cases of human transmission, but this result suggests that several mpox clades can be introduced, probably originating from areas where mpox is endemic, reminding us that events like the one originating the 2022 mpox outbreak are likely to happen again, either with mpox or other virus of zoonotic origin.
+
+![Nextclade](nextclade.png)
 
 
-Routine surveillance of monkeypox 
-
-PT428 (A2.3): ERR10513231
-fasterq-dump ERR10513231
+</p></details>
+<br/>
 
 
 
 Suggestions to try if you have the time and interest:
+
+
 
 Paper explaining how breseq detects structural variants: https://pubmed.ncbi.nlm.nih.gov/25432719/
 
