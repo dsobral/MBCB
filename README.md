@@ -194,6 +194,12 @@ Nonetheless, there is unassigned evidence that we could look at. Namely, there i
 Looking at the alignments in IGV, we can confirm this:
 ![Evidence for 914bp deletion](igv_snapshot_deletion.png)
 
+There is also some apparent missing coverage evidence at the beginning and the end of the genome, but this because these are the repeated terminal regions, and thus is it natural that no unique alignments can be found here. 
+
+Junction evidence at or near position 133090 is close to a polyA repetitive locus, with arefactual alignments (eg. reads from the host bearing a polyA repeat), and thus it is unlikely to be a real structural variant. 
+
+Finally, a missing coverage evidence at position 173314 may suggest some incoherence between the sample genome and the reference genome, but the specific variant is not obvious and would require further specific investigation.
+
 </p></details>
 <br/>
 
