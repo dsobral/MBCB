@@ -43,7 +43,7 @@ Since these reads are already the reads that map to the monkeypox genome, they h
 If you have not done so before, pull a docker image for bwa and samtools eg.:
 ```
 docker pull biocontainers/bwa:v0.7.17-3-deb_cv1
-docker pull biocontainers/samtools:v1.9-4-deb_cv1
+docker pull staphb/samtools:1.19
 ```
 
 We first need to create an index of the reference genome to be able to use bwa to align the reads against the reference. 
@@ -59,9 +59,9 @@ docker run --rm -v $PWD:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa mem MT9033
 Finally, we use samtools to convert the sam to bam, sort it by position, and index it.
 
 ```
-docker run --rm -v $PWD:/data biocontainers/samtools:v1.9-4-deb_cv1 samtools view -Sb ERR9769171.sam > ERR9769171.bam
-docker run --rm -v $PWD:/data biocontainers/samtools:v1.9-4-deb_cv1 samtools sort -o ERR9769171.sorted.bam ERR9769171.bam
-docker run --rm -v $PWD:/data biocontainers/samtools:v1.9-4-deb_cv1 samtools index ERR9769171.sorted.bam
+docker run --rm -v $PWD:/data staphb/samtools:1.19 samtools view -Sb ERR9769171.sam > ERR9769171.bam
+docker run --rm -v $PWD:/data staphb/samtools:1.19 samtools sort -o ERR9769171.sorted.bam ERR9769171.bam
+docker run --rm -v $PWD:/data staphb/samtools:1.19 samtools index ERR9769171.sorted.bam
 ```
 
 Note: you should now also have the file ERR9769171.sorted.bam.bai
@@ -213,16 +213,16 @@ Let's now look at one the samples obtained during the 2022 outbreak sequenced us
 ```
 docker run --rm -v $PWD:/data ncbi/sra-tools:3.0.1 fasterq-dump --outdir /data ERR10513231
 docker run --rm -v $PWD:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa mem MT903344.1.fasta ERR10513231_1.fastq ERR10513231_2.fastq > ERR10513231.sam
-docker run --rm -v $PWD:/data biocontainers/samtools:v1.9-4-deb_cv1 samtools view -Sb ERR10513231.sam > ERR10513231.bam
-docker run --rm -v $PWD:/data biocontainers/samtools:v1.9-4-deb_cv1 samtools sort -o ERR10513231.sorted.bam ERR10513231.bam
-docker run --rm -v $PWD:/data biocontainers/samtools:v1.9-4-deb_cv1 samtools index ERR10513231.sorted.bam
+docker run --rm -v $PWD:/data staphb/samtools:1.19 samtools view -Sb ERR10513231.sam > ERR10513231.bam
+docker run --rm -v $PWD:/data staphb/samtools:1.19 samtools sort -o ERR10513231.sorted.bam ERR10513231.bam
+docker run --rm -v $PWD:/data staphb/samtools:1.19 samtools index ERR10513231.sorted.bam
 docker run --rm -v $PWD:/data biocontainers/freebayes:v1.2.0-2-deb_cv1 freebayes -p 1 -0 -f MT903344.1.fasta ERR10513231.sorted.bam > ERR10513231.sorted.vcf
 ```
 
 </p></details>
 <br/>
 
-**Question**: 
+**Question**: How many SNVs with QUAL>30 does freebayes report?
 <details><summary>Click Here to see a suggestion</summary><p>
 
 
