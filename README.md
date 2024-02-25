@@ -124,6 +124,15 @@ These SNVs fall inside the terminal repeat region, a duplicated area present at 
 </p></details>
 <br/>
 
+**Question**: Do you see any pattern in the detected SNVs?
+<details><summary>Click Here to see a suggestion</summary><p>
+
+The vast majority of SNVs are G>A or C>T mutations. This is thought to be the sign of interaction with the host (human) immune system, namely through the [APOBEC deaminase](https://www.science.org/doi/10.1126/science.adg8116).  
+
+</p></details>
+<br/>
+
+
 Freebayes only detects mutations that fall with the read (SNVs and small indels). Sice the type of evidence necessary to detect larger structural variants is different, specific tools are necessary. We will use one easy to use tool that was developed to study experimental evolution of E. coli. This tool, [breseq](https://barricklab.org/twiki/bin/view/Lab/ToolsBacterialGenomeResequencing), performs all the necessary steps to detect variants, including structural variants, and produces a nice report with all the information.    
 
 Before trying to use it for our sample, let's explore an example output. Namely, we will look at Example1a from the breseq introductory topics workshop.
@@ -168,7 +177,24 @@ This will take a few minutes to run, depending on your computer.
 
 **TASK**: Open the output report in ERR9769171_breseq/output/index.html
 
+**Question**: How do the variants that breseq reports compare with what you obtained with freebayes?
+<details><summary>Click Here to see a suggestion</summary><p>
 
+All SNVs are the same. The indel at position is annotated slightly differently, and two more indels are reported by freebayes.
+
+</p></details>
+<br/>
+
+
+**Question**: Is there any evidence for larger structural variants?
+<details><summary>Click Here to see a suggestion</summary><p>
+
+All SNVs in Fig.2 of the paper are in the VCF except the first 5 and the last 5.
+
+These SNVs fall inside the terminal repeat region, a duplicated area present at the ends of the genome. Since there is more than one copy of it, the mapping quality is 0, and is excluded from analysis (in accordance with the parameters we used).
+
+</p></details>
+<br/>
 
 
 It has a deletion at NC_063383:11,326-12,238
