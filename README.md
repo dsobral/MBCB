@@ -225,9 +225,19 @@ docker run --rm -v $PWD:/data biocontainers/freebayes:v1.2.0-2-deb_cv1 freebayes
 **Question**: How many SNVs with QUAL>30 does freebayes report?
 <details><summary>Click Here to see a suggestion</summary><p>
 
+60 variants with QUAL>30, 56 SNVs.
 
 </p></details>
 <br/>
+
+**Question**: Are the SNVs the same as the previous sample? Do you think this sample belongs to the 2022 outbreak?
+<details><summary>Click Here to see a suggestion</summary><p>
+
+The SNVs are not the same. This sample is likely to have a completely separate origin.
+
+</p></details>
+<br/>
+
 
 
 Routine surveillance of monkeypox 
