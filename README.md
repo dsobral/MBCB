@@ -107,7 +107,7 @@ The VCF contains 60 variants (the number of lines, except the header lines start
 **Question**: How many variants are in the VCF file with good quality (QUAL>30)?
 <details><summary>Click Here to see a suggestion</summary><p>
 
-The VCF contains 40 variants with QUAL > 30.
+The VCF contains 40 variants with QUAL > 30, 39 SNPs and one tandem repeat.
 
 </p></details>
 <br/>
