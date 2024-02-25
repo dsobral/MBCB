@@ -99,7 +99,7 @@ docker run --rm -v $PWD:/data biocontainers/freebayes:v1.2.0-2-deb_cv1 freebayes
 **Question**: How many variants are in the VCF file?
 <details><summary>Click Here to see a suggestion</summary><p>
 
-The VCF contains 60 variants (the number of lines, except the header lines starting with '#')
+The VCF contains 60 variants (the number of lines, except the header lines starting with '#'). By default, freebayes reports every position where there is any kind of evidence (no matter how small) of differences with the reference. 
 
 </p></details>
 <br/>
