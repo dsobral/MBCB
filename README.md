@@ -112,6 +112,15 @@ The VCF contains 40 variants with QUAL > 30, 39 SNPs and one tandem repeat.
 </p></details>
 <br/>
 
+**Question**: Does the VCF contain all the SNVs described in the [paper (see Fig.2)](https://www.nature.com/articles/s41591-022-01907-y/figures/2)? If not, can you think of a reason why that is so?
+<details><summary>Click Here to see a suggestion</summary><p>
+
+All SNVs in Fig.2 of the paper are in the VCF except the first 5 and the last 5.
+
+These SNVs fall inside the terminal repeat region, a duplicated area present at the ends of the genome. Since there is more than one copy of it, the mapping quality is 0, and is excluded from analysis (in accordance with the parameters we used).
+
+</p></details>
+<br/>
 
 
 
