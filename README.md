@@ -263,7 +263,7 @@ Sample Monkeypox/PT0005/2022 belongs to the B.1.9 clade, a subclade of the B.1 c
 
 
 
-Suggestions to try if you have the time and interest:
+Suggestions of things to try if you have the time and interest:
 
 
 
