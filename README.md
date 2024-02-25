@@ -82,13 +82,43 @@ We will start by looking at the available options to run the software
 As you can see, freebayes has several options, although it can used even without explicitly providing any of them. One important important parameter is ploidy, as it determines how many possible haplotypes we should expect have at a given locus. 
 
 **Question**: Knowing that this is a virus, do you think using the default ploidy of 2 is a good idea?
-<details><summary>Click Here to see a hint</summary><p>
+<details><summary>Click Here to see a suggestion</summary><p>
+
+Assuming a simple exponential expansion of the virus, the most likely ploidy is 1. Nonetheless, if we want try to uncover the presence of other clones, we may need to change the ploidy value. 
+
+</p></details>
+<br/>
+
+Other parameters include quality filters for the base quality and alignment quality. Freebayes provide a parameter -0 that provides a strict threshold for these quality parameters.
+
+**TASK**: Run the following freebayes command:
+```
+docker run --rm -v $PWD:/data biocontainers/freebayes:v1.2.0-2-deb_cv1 freebayes -p 1 -0 -f MT903344.1.fasta ERR9769171.sorted.bam > ERR9769171.sorted.vcf
+```
+
+**Question**: How many variants are in the VCF file?
+<details><summary>Click Here to see a suggestion</summary><p>
+
+The VCF contains 60 variants (the number of lines, except the header lines starting with '#')
+
+</p></details>
+<br/>
+
+**Question**: How many variants are in the VCF file with good quality (QUAL>30)?
+<details><summary>Click Here to see a suggestion</summary><p>
+
+The VCF contains 40 variants with QUAL > 30.
 
 </p></details>
 <br/>
 
 
+
+
+
+
 It has a deletion at NC_063383:11,326-12,238
+
 fasterq-dump ERR9769167
 
 breseq -r NC_063383.1.gb -j 4 -n ERR9769171 -o ERR9769171_breseq ERR9769171_1.fastq.gz ERR9769171_2.fastq.gz
@@ -102,12 +132,14 @@ fasterq-dump ERR9769176
 Routine surveillance of monkeypox 
 
 [amplicon sequencing]
-PT400 (B.1): ERR10513212
-fasterq-dump ERR10513212
 
 PT428 (A2.3): ERR10513231
 fasterq-dump ERR10513231
 
+
+
+PT400 (B.1): ERR10513212
+fasterq-dump ERR10513212
 
 
 docker pull staphb/minimap2:2.26
