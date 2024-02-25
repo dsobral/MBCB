@@ -159,6 +159,17 @@ Click on: Send to > File > Format (Genbank - Full) > Create File
 
 The genbank format usually only includes the annotations, but here we also want to include the genome sequence, so we need to obtain the genbank (full) format.
 
+**TASK**: Run breseq on the monkeypox sample
+```
+docker run --rm -v $PWD:/data jysgro/breseq:ub2304_py3114_R422_br0381_bt245 breseq -n ERR9769171 -o ERR9769171_breseq -r MT903344.1.gb ERR9769171_1.fastq ERR9769171_2.fastq
+```
+
+This will take a few minutes to run, depending on your computer. 
+
+**TASK**: Open the output report in ERR9769171_breseq/output/index.html
+
+
+
 
 It has a deletion at NC_063383:11,326-12,238
 
