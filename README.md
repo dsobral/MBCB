@@ -136,7 +136,7 @@ You should now see several predicted mutations, including the type of evidence b
 
 **TASK**: Click on the MC and JC evidence for the large deletion in the position 547,700
 
-For the large deletion in position 547,700, you can see that there are very few unique read alignments within the region (missing coverage), and there are several reads that span the genomic positions that were previously unconnected. 
+For the large deletion in position 547,700, you can see that there are very few unique read alignments within the region (missing coverage), and there are several reads that span the genomic positions that were previously unconnected (new junctions). 
 
 **Note**: At the bottom of the report, there are positions with junction or missing coverage evidence suggesting differences from the reference (mostly structural variants), but that do not pass the strict criteria breseq uses for calling a variant. 
 
