@@ -122,19 +122,47 @@ These SNVs fall inside the terminal repeat region, a duplicated area present at 
 </p></details>
 <br/>
 
+Freebayes only detects mutations that fall with the read (SNVs and small indels). Sice the type of evidence necessary to detect larger structural variants is different, specific tools are necessary. We will use one easy to use tool that was developed to study evolution of E. coli. This tool, [breseq](https://barricklab.org/twiki/bin/view/Lab/ToolsBacterialGenomeResequencing), performs all the necessary steps to detect variants, including structural variants.    
+
+Before trying to use it for our sample, let's explore an example output. Namely, we will look at Example1a from the breseq introductory topics workshop.
+
+**TASK**: Open the [link for the example](https://barricklab.org/twiki/pub/Lab/ToolsBacterialGenomeResequencing/IntroWorkshop/REL11392_Ara+1_50K_clone_A/).
+
+You should now see several predicted mutations, including the type of evidence breseq used to predict it. For SNVs, and several of the small indels, the evidence used is RA (read alignment). For structural variants, including movement of transposons (like the bacterial IS - insertion sequence elements), the evidence include JC (new junctions - connections of regions of the reference previously unconnected) and MC (missing coverage - regions of the genome with no alignments).
+
+**TASK**: Click on the MC and JC evidence for the large deletion in the position 547,700
+
+For the large deletion in position 547,700, you can see that there are very few unique read alignments within the region (missing coverage), and there are several reads that span the genomic positions that were previously unconnected. 
+
+**Note**: At the bottom of the report, there are positions with junction or missing coverage evidence suggesting differences from the reference (mostly structural variants), but that do not pass the strict criteria breseq uses for calling a variant. 
+
+Let's try now to use breseq with our monkeypox sample. First, let's obtain the software.
+
+**TASK**: Pull a docker image for breseq:
+```
+docker pull jysgro/breseq:ub2304_py3114_R422_br0381_bt245
+```
+
+**TASK**: See the available parameters for breseq.
+```
+docker run --rm jysgro/breseq:ub2304_py3114_R422_br0381_bt245 breseq -h
+```
+
+As you can see, there are many parameters available. The simplest mandatory parameters are the reference, and the fastq reads. Notice that the reference breseq prefers is not in the fasta format, but in the genbank (.gbk) format. This is because breseq also performs variant annotations, ie. tries to predict the effect of the variant, and thus it requires gene annotations, which are included in the genbank format.
 
 
+**TASK**: Download the genbank file (full) of the reference from https://www.ncbi.nlm.nih.gov/nuccore/MT903344.1 
+
+Click on: Send to > File > Format (Genbank - Full) > Create File 
+
+The genbank format usually only includes the annotations, but here we also want to include the genome sequence, so we need to obtain the genbank (full) format.
 
 
 It has a deletion at NC_063383:11,326-12,238
 
-fasterq-dump ERR9769167
-
 breseq -r NC_063383.1.gb -j 4 -n ERR9769171 -o ERR9769171_breseq ERR9769171_1.fastq.gz ERR9769171_2.fastq.gz
 
 
-Case 10 (shotgun metagenomics)
-fasterq-dump ERR9769176
 
 [A retrospective overview of the 2022 outbreak](https://doi.org/10.1038/s41591-023-02542-x):
 
@@ -151,12 +179,18 @@ PT400 (B.1): ERR10513212
 fasterq-dump ERR10513212
 
 
-docker pull staphb/minimap2:2.26
-
-docker pull staphb/samtools:1.19
-
-docker pull biocontainers/freebayes:v1.2.0-2-deb_cv1
-
-docker pull jysgro/breseq:ub2304_py3114_R422_br0381_bt245
 
 
+
+Suggestions to try if you have the time and interest:
+
+Paper explaining how breseq detects structural variants: https://pubmed.ncbi.nlm.nih.gov/25432719/
+
+Using breseq, find variants from an Ecoli sample from the paper
+https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1004182. 
+
+Namely, use the sample SRR625891 and the reference NC_000913.3
+
+• How many variants do you detect, in which genes? What types of variants do you detect?
+
+[ 16 variants: 5 SNVs; 4 indels; 4 deletions; 3 other structural variants ]
