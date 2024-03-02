@@ -265,9 +265,10 @@ Sample Monkeypox/PT0005/2022 belongs to the B.1.9 clade, a subclade of the B.1 c
 
 Suggestions of things to try if you have the time and interest:
 
+Using the same approach that you used today, try to find what is the SARS-CoV-2 lineage of the sample that you analyzed last week (SRR14773779). Now you'll need to use the [SARS-CoV-2 reference genome](https://www.ncbi.nlm.nih.gov/nuccore/NC_045512.2). Namely align the reads, obtain a consensus sequence and upload to Nextclade. Can you find variants in the Spike (S) protein?
 
 
-Paper explaining how breseq detects structural variants: https://pubmed.ncbi.nlm.nih.gov/25432719/
+
 
 Using breseq, find variants from an Ecoli sample from the paper
 https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1004182. 
