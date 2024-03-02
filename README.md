@@ -267,14 +267,6 @@ Suggestions of things to try if you have the time and interest:
 
 Using the same approach that you used today, try to find what is the SARS-CoV-2 lineage of the sample that you analyzed last week (SRR14773779). Now you'll need to use the [SARS-CoV-2 reference genome](https://www.ncbi.nlm.nih.gov/nuccore/NC_045512.2). Namely align the reads, obtain a consensus sequence and upload to Nextclade. Can you find variants in the Spike (S) protein?
 
+Look at parameters from breseq to see how you could detect subclonal variants (ie. variants that are not in the majority). Run this in one of the monkeypox samples you used today to see if you can detect minor variants. What extra parameters are there to make sure you do not obtain artifacts when trying to infer minor variants? Now try the same with freebayes and compare (which parameter(s) would you need to change?)
 
-
-
-Using breseq, find variants from an Ecoli sample from the paper
-https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1004182. 
-
-Namely, use the sample SRR625891 and the reference NC_000913.3
-
-• How many variants do you detect, in which genes? What types of variants do you detect?
-
-[ 16 variants: 5 SNVs; 4 indels; 4 deletions; 3 other structural variants ]
+Using breseq, find variants from an Ecoli sample from [this paper](https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1004182). Namely, use the sample SRR625891 and the reference NC_000913.3. How many variants do you detect, in which genes? What types of variants do you detect?
