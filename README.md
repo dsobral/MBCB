@@ -178,7 +178,7 @@ This will take a few minutes to run, depending on your computer.
 **Question**: How do the variants that breseq reports compare with what you obtained with freebayes?
 <details><summary>Click Here to see a suggestion</summary><p>
 
-All SNVs are the same. The indel at position is annotated slightly differently, and two more indels are reported by breseq.
+All SNVs with QUAL>30 are the same. The indel at position 133174 is annotated slightly differently, and two more indels are reported by breseq.
 
 </p></details>
 <br/>
