@@ -242,8 +242,8 @@ To further confirm our suspicion, we will now generate consensus sequences for t
 
 **TASK**: Run the following samtools commands to generate consensus sequences for the two samples.
 ```
-docker run --rm -v $PWD:/data staphb/samtools:1.19 samtools consensus -a ERR9769171.sorted.bam -o ERR9769171.sorted.fasta
-docker run --rm -v $PWD:/data staphb/samtools:1.19 samtools consensus -a ERR10513231.sorted.bam -o ERR10513231.sorted.fasta
+docker run --rm -v ${PWD}:/data staphb/samtools:1.19 samtools consensus -a ERR9769171.sorted.bam -o ERR9769171.sorted.fasta
+docker run --rm -v ${PWD}:/data staphb/samtools:1.19 samtools consensus -a ERR10513231.sorted.bam -o ERR10513231.sorted.fasta
 ```
 
 **TASK**: Upload the consensus sequences to [nextclade](https://clades.nextstrain.org/) and compare the two samples in the Mpox virus (All clades) tree
