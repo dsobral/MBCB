@@ -26,9 +26,9 @@ As in the last session, we will make use of [docker](https://www.docker.com/) im
 docker pull ncbi/sra-tools:3.0.1
 ```
 
-Next, run fasterq-dump using the sra-tools docker image:
+Next, run fasterq-dump using the sra-tools docker image (in powershell or using linux):
 ```
-docker run --rm -v $PWD:/data ncbi/sra-tools:3.0.1 fasterq-dump --outdir /data ERR9769171
+docker run --rm -v ${PWD}:/data ncbi/sra-tools:3.0.1 fasterq-dump --outdir /data ERR9769171
 ```
 
 Since these reads are already the reads that map to the monkeypox genome, they have been already quality processed, and thus can be used directly as they are for subsequent analyses.
