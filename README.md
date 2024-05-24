@@ -48,20 +48,20 @@ docker pull staphb/samtools:1.19
 
 We first need to create an index of the reference genome to be able to use bwa to align the reads against the reference. 
 ```
-docker run --rm -v $PWD:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa index MT903344.1.fasta
+docker run --rm -v ${PWD}:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa index MT903344.fasta
 ```
 
 Next we use bwa to generate alignments:
 ```
-docker run --rm -v $PWD:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa mem MT903344.1.fasta ERR9769171_1.fastq ERR9769171_2.fastq > ERR9769171.sam 
+docker run --rm -v ${PWD}:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa mem MT903344.fasta -o ERR9769171.sam ERR9769171_1.fastq ERR9769171_2.fastq 
 ```
 
 Finally, we use samtools to convert the sam to bam, sort it by position, and index it.
 
 ```
-docker run --rm -v $PWD:/data staphb/samtools:1.19 samtools view -Sb ERR9769171.sam > ERR9769171.bam
-docker run --rm -v $PWD:/data staphb/samtools:1.19 samtools sort -o ERR9769171.sorted.bam ERR9769171.bam
-docker run --rm -v $PWD:/data staphb/samtools:1.19 samtools index ERR9769171.sorted.bam
+docker run --rm -v ${PWD}:/data staphb/samtools:1.19 samtools view -Sb ERR9769171.sam -o ERR9769171.bam
+docker run --rm -v ${PWD}:/data staphb/samtools:1.19 samtools sort -o ERR9769171.sorted.bam ERR9769171.bam
+docker run --rm -v ${PWD}:/data staphb/samtools:1.19 samtools index ERR9769171.sorted.bam
 ```
 
 Note: you should now also have the file ERR9769171.sorted.bam.bai
@@ -95,7 +95,7 @@ Other parameters include quality filters for the base quality and alignment qual
 
 **TASK**: Run the following freebayes command:
 ```
-docker run --rm -v $PWD:/data biocontainers/freebayes:v1.2.0-2-deb_cv1 freebayes -p 1 -0 -f MT903344.1.fasta ERR9769171.sorted.bam > ERR9769171.sorted.vcf
+docker run --rm -v ${PWD}:/data biocontainers/freebayes:v1.2.0-2-deb_cv1 freebayes -p 1 -0 -f MT903344.fasta ERR9769171.sorted.bam -v ERR9769171.sorted.vcf
 ```
 
 **Question**: How many variants are in the VCF file?
@@ -168,7 +168,7 @@ The genbank format usually only includes the annotations, but here we also want 
 
 **TASK**: Run breseq on the monkeypox sample
 ```
-docker run --rm -v $PWD:/data jysgro/breseq:ub2304_py3114_R422_br0381_bt245 breseq -n ERR9769171 -o ERR9769171_breseq -r MT903344.1.gb ERR9769171_1.fastq ERR9769171_2.fastq
+docker run --rm -v ${PWD}:/data jysgro/breseq:ub2304_py3114_R422_br0381_bt245 breseq -n ERR9769171 -o ERR9769171_breseq -r MT903344.gb ERR9769171_1.fastq ERR9769171_2.fastq
 ```
 
 This will take a few minutes to run, depending on your computer. 
@@ -211,12 +211,12 @@ Let's now look at one the samples obtained during the 2022 outbreak sequenced us
 <details><summary>Click Here to see a suggestion</summary><p>
 
 ```
-docker run --rm -v $PWD:/data ncbi/sra-tools:3.0.1 fasterq-dump --outdir /data ERR10513231
-docker run --rm -v $PWD:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa mem MT903344.1.fasta ERR10513231_1.fastq ERR10513231_2.fastq > ERR10513231.sam
-docker run --rm -v $PWD:/data staphb/samtools:1.19 samtools view -Sb ERR10513231.sam > ERR10513231.bam
-docker run --rm -v $PWD:/data staphb/samtools:1.19 samtools sort -o ERR10513231.sorted.bam ERR10513231.bam
-docker run --rm -v $PWD:/data staphb/samtools:1.19 samtools index ERR10513231.sorted.bam
-docker run --rm -v $PWD:/data biocontainers/freebayes:v1.2.0-2-deb_cv1 freebayes -p 1 -0 -f MT903344.1.fasta ERR10513231.sorted.bam > ERR10513231.sorted.vcf
+docker run --rm -v ${PWD}:/data ncbi/sra-tools:3.0.1 fasterq-dump --outdir /data ERR10513231
+docker run --rm -v ${PWD}:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa mem MT903344.fasta -o ERR10513231.sam ERR10513231_1.fastq ERR10513231_2.fastq
+docker run --rm -v ${PWD}:/data staphb/samtools:1.19 samtools view -Sb ERR10513231.sam -o ERR10513231.bam
+docker run --rm -v ${PWD}:/data staphb/samtools:1.19 samtools sort -o ERR10513231.sorted.bam ERR10513231.bam
+docker run --rm -v ${PWD}:/data staphb/samtools:1.19 samtools index ERR10513231.sorted.bam
+docker run --rm -v ${PWD}:/data biocontainers/freebayes:v1.2.0-2-deb_cv1 freebayes -p 1 -0 -f MT903344.fasta ERR10513231.sorted.bam > ERR10513231.sorted.vcf
 ```
 
 </p></details>
@@ -242,8 +242,8 @@ To further confirm our suspicion, we will now generate consensus sequences for t
 
 **TASK**: Run the following samtools commands to generate consensus sequences for the two samples.
 ```
-docker run --rm -v $PWD:/data staphb/samtools:1.19 samtools consensus -a ERR9769171.sorted.bam > ERR9769171.sorted.fasta
-docker run --rm -v $PWD:/data staphb/samtools:1.19 samtools consensus -a ERR10513231.sorted.bam > ERR10513231.sorted.fasta
+docker run --rm -v $PWD:/data staphb/samtools:1.19 samtools consensus -a ERR9769171.sorted.bam -o ERR9769171.sorted.fasta
+docker run --rm -v $PWD:/data staphb/samtools:1.19 samtools consensus -a ERR10513231.sorted.bam -o ERR10513231.sorted.fasta
 ```
 
 **TASK**: Upload the consensus sequences to [nextclade](https://clades.nextstrain.org/) and compare the two samples in the Mpox virus (All clades) tree
