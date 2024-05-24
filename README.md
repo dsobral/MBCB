@@ -216,7 +216,7 @@ docker run --rm -v ${PWD}:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa mem MT90
 docker run --rm -v ${PWD}:/data staphb/samtools:1.19 samtools view -Sb ERR10513231.sam -o ERR10513231.bam
 docker run --rm -v ${PWD}:/data staphb/samtools:1.19 samtools sort -o ERR10513231.sorted.bam ERR10513231.bam
 docker run --rm -v ${PWD}:/data staphb/samtools:1.19 samtools index ERR10513231.sorted.bam
-docker run --rm -v ${PWD}:/data biocontainers/freebayes:v1.2.0-2-deb_cv1 freebayes -p 1 -0 -f MT903344.fasta ERR10513231.sorted.bam > ERR10513231.sorted.vcf
+docker run --rm -v ${PWD}:/data biocontainers/freebayes:v1.2.0-2-deb_cv1 freebayes -p 1 -0 -f MT903344.fasta ERR10513231.sorted.bam -v ERR10513231.sorted.vcf
 ```
 
 </p></details>
