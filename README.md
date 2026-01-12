@@ -1,5 +1,7 @@
 # MBCB - Genetic Alterations and Functional Impact
 
+Alternatively to this, you have a [Google CoLab ](https://colab.research.google.com/drive/1ZvftaaRmEVMN4ANkGQMQPGDo2DJSxmRe?usp=sharing) to run the same exercises.
+
 For this session, we will analyse some data from the 2022 mpox (formerly known as Monkeypox) outbreak in Portugal.
 
 We will start with data from the [first cases](https://doi.org/10.1038/s41591-022-01907-y) in early May 2022.
