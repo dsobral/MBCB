@@ -44,18 +44,18 @@ Since these reads are already the reads that map to the monkeypox genome, they h
 
 If you have not done so before, pull a docker image for bwa and samtools eg.:
 ```
-docker pull biocontainers/bwa:v0.7.17-3-deb_cv1
+docker pull staphb/bwa
 docker pull staphb/samtools:1.19
 ```
 
 We first need to create an index of the reference genome to be able to use bwa to align the reads against the reference. 
 ```
-docker run --rm -v ${PWD}:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa index MT903344.fasta
+docker run --rm -v ${PWD}:/data staphb/bwa:v0.7.17-3-deb_cv1 bwa index MT903344.fasta
 ```
 
 Next we use bwa to generate alignments:
 ```
-docker run --rm -v ${PWD}:/data biocontainers/bwa:v0.7.17-3-deb_cv1 bwa mem MT903344.fasta -o ERR9769171.sam ERR9769171_1.fastq ERR9769171_2.fastq 
+docker run --rm -v ${PWD}:/data staphb/bwa:v0.7.17-3-deb_cv1 bwa mem MT903344.fasta -o ERR9769171.sam ERR9769171_1.fastq ERR9769171_2.fastq 
 ```
 
 Finally, we use samtools to convert the sam to bam, sort it by position, and index it.
@@ -75,12 +75,12 @@ Now that we obtained our alignments, let's try to obtain variants, ie., differen
 
 Let's pull a docker image for freebayes (note that this is not the most recent version):
 ```
-docker pull biocontainers/freebayes:v1.2.0-2-deb_cv1
+docker pull staphb/freebayes
 ```
 
 We will start by looking at the available options to run the software
 ```
-docker run --rm biocontainers/freebayes:v1.2.0-2-deb_cv1 freebayes -h
+docker run --rm staphb/freebayes freebayes -h
 ```
 
 As you can see, freebayes has several options, although it can be used even without explicitly providing any of them. One important parameter is ploidy, as it determines how many possible haplotypes we should expect to have at a given locus. 
@@ -97,7 +97,7 @@ Other parameters include quality filters for the base quality and alignment qual
 
 **TASK**: Run the following freebayes command:
 ```
-docker run --rm -v ${PWD}:/data biocontainers/freebayes:v1.2.0-2-deb_cv1 freebayes -p 1 -0 -f MT903344.fasta ERR9769171.sorted.bam -v ERR9769171.sorted.vcf
+docker run --rm -v ${PWD}:/data staphb/freebayes freebayes -p 1 -0 -f MT903344.fasta ERR9769171.sorted.bam -v ERR9769171.sorted.vcf
 ```
 
 **Question**: How many variants are in the VCF file?
